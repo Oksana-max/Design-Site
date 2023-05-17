@@ -1,0 +1,115 @@
+.header {
+  position: absolute;
+  top: 6%;
+  left: 22.8%;
+  z-index: 10;
+  @media (max-width: 880px) {
+    left: 10%;
+  }
+}
+
+//Burger/////////////////////////////
+.icon-menu {
+  display: none;
+  @media (max-width: 880px) {
+    display: block;
+    position: relative;
+    width: 35px;
+    height: 23px;
+    cursor: pointer;
+    z-index: 5;
+    background-color: transparent;
+    span,
+    &::before,
+    &::after {
+      content: '';
+      transition: all 0.3s ease 0s;
+      left: 0px;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #ffffff;
+    }
+    &::before {
+      top: 0px;
+    }
+    &::after {
+      bottom: 0px;
+    }
+    span {
+      top: calc(50% - 1px);
+    }
+    .menu-open & {
+      span {
+        transform: scale(0);
+      }
+      &::before {
+        transform: rotate(-45deg);
+        top: calc(50% - 1px);
+      }
+      &::after {
+        transform: rotate(45deg);
+        bottom: calc(50% - 1px);
+      }
+    }
+  }
+}
+.menu {
+  &__body {
+    @media (max-width: 880px) {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      left: -100%;
+      overflow: auto;
+      z-index: 4;
+      padding: 133px 20px 30px 30px;
+      background-color: #000000;
+      transition: left 0.5s ease;
+
+      &._active {
+        left: 0;
+        &::before {
+          left: 0;
+        }
+      }
+    }
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__item {
+    &:not(:last-child) {
+      margin-right: 60px;
+      margin-bottom: 10px;
+    }
+  }
+  &__link {
+    font-family: 'Work Sans';
+    line-height: 120%;
+    color: #ffffff;
+    &:hover {
+      color: #000000;
+      transition: color 0.2s ease-in;
+    }
+  }
+}
+
+@media (max-width: 880px) {
+  .menu__list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .menu__item {
+    &:not(:last-child) {
+      margin-right: 30px;
+      margin-bottom: 30px;
+    }
+  }
+  .menu__link {
+    font-size: 26px;
+  }
+}
